@@ -66,8 +66,15 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('stall.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-store-alt"></i>
               <p>Stall</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('category.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-list-alt"></i>
+              <p>Category</p>
             </a>
           </li>
         </ul>

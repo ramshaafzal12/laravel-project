@@ -41,4 +41,8 @@ class AgencyController extends Controller
         }
         return view('agency.index');
     } 
+
+    public function agencyList($companyId) {
+        return Agency::getAgencies(['status' => Agency::STATUSES_KEY['active'], 'company_id' => $companyId]);
+    }
 }

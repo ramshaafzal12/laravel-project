@@ -71,7 +71,7 @@
                                         <label for="city_id" class="col-form-label">City<span class="require">*</span></label>
                                         </div>
                                         <div class="col-sm-8">
-                                        <select name="city_id" id="city_id" class="form-control">
+                                            <select name="city_id" id="city_id" class="form-control">
                                                 <option value="">Select City</option>
                                                 @foreach($cities as $key => $city)
                                                 <option value="{{ $key }}"> {{ $city }} </option>

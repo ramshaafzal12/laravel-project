@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StallController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\StallController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('agencies/all', [AgencyController::class, 'index']);
     Route::post('agency/{id}/delete/', [AgencyController::class, 'destroy'])->name('agencies.delete');
+    Route::get('agency-list/{companyId}', [AgencyController::class, 'agencyList'])->name('agencies.list');
     Route::resource('agency', AgencyController::class);
 });
 
@@ -51,4 +53,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('stalls/all', [StallController::class, 'index']);
     Route::post('stall/{id}/delete/', [StallController::class, 'destroy'])->name('stalls.delete');
     Route::resource('stall', StallController::class);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('categories/all', [CategoryController::class, 'index']);
+    Route::post('category/{id}/delete/', [CategoryController::class, 'destroy'])->name('categories.delete');
+    Route::resource('category', CategoryController::class);
 });

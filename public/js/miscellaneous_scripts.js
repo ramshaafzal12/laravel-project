@@ -45,3 +45,22 @@ function deleteRecord(url, type, method = 'DELETE') {
         }
     })
 };
+
+function getAgencyDropdownWrtCompany(companyId, element = 'agency_id'){
+    $.ajax({
+        url:`/agency-list/${companyId}`,
+        method:"GET",
+        success:function(response){
+
+            var options = `<option value=''> Select Agency</option>`
+
+            for (const property in response) {
+                options += `<option value='${response[property].id}'> ${response[property].agency_name} </option>`;
+            }
+
+            $(`#${element}`).empty().append(options);
+            $(`#${element}`).attr('disabled',false);
+            
+        }
+    });
+}

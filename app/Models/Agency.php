@@ -16,11 +16,30 @@ class Agency extends Model
         1 => 'Active'
     ];
 
+    CONST STATUSES_KEY = [
+        'inactive' => 0,
+        'active' => 1  
+    ];
+
     public function company() {
         return $this->belongsTo(Company::class);
     }
 
-    public static function getAgencies() {
-        return Agency::with('company')->get();
+    public static function getAgencies( $filters = [] ) {
+        $agencies = Agency::with('company');
+
+        if( $filters ) {
+            // if( !empty($filters['status']) ) {
+            //     $agencies = $agencies->where('status', $filters['status']);
+            // } 
+
+            if( !empty($filters['company_id']) ) {
+                $agencies = $agencies->where('company_id', $filters['company_id']);
+            }
+        }
+
+        $agencies = $agencies->get();
+
+        return $agencies;
     }
 }

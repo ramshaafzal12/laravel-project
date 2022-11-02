@@ -17,7 +17,17 @@ class Company extends Model
         1 => 'Active'
     ];
 
-    public static function getCompanies() {
+    CONST STATUSES_KEY = [
+        'inactive' => 0,
+        'active' => 1  
+    ];
+
+    public static function getCompanies($filters = []) {
+        if( $filters ) {
+            if( !empty( $filters['status'] ) ) {
+                return self::where('status', $filters['status'])->get();
+            }
+        }
         return self::get();
     }
 

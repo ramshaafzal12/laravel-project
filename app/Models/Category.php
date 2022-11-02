@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Stall extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -16,16 +16,15 @@ class Stall extends Model
         1 => 'Active'
     ];
 
-    
     public function agency() {
         return $this->belongsTo(Agency::class);
     }
 
-    public function company() {
-        return $this->belongsTo(Company::class);
+    public static function getCategories() {
+        return self::with('agency')->get();
     }
 
-    public static function getStalls() {
-        return self::with('agency', 'company')->get();
+    public static function createCategory( $data ) {
+        return self::create($data);
     }
 }
